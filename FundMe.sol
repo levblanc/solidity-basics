@@ -3,23 +3,25 @@ pragma solidity ^0.8.8;
 
 import './PriceConverter.sol';
 
+error NotOwner();
+
 contract FundMe {
     using PriceConverter for uint256;
 
-    uint256 public minimumUsd = 50 * 10 ** 18;
+    uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
-    address public owner;
+    address public immutable i_owner;
 
     constructor () {
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     function fund() public payable {
         // Want to be able to set a minimum fund amount in USD
         // 1. How to we send ETH to this contract?
-        require(msg.value.getConversionRate() >= minimumUsd, "Didn't send enough!");
+        require(msg.value.getConversionRate() >= MINIMUM_USD, "Didn't send enough!");
 
         // What is reverting?
         // Undo any actions before, and send remaining gas back
@@ -29,7 +31,7 @@ contract FundMe {
         funders.push(msg.sender);
     }
 
-    function withdraw() public onlyOwner {
+    function withdraw() public onlyi_owner {
         for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0; 
@@ -48,9 +50,29 @@ contract FundMe {
         require(callSuccess, 'Call failed');
     }
 
-    modifier onlyOwner {
-        require(msg.sender == owner, 'Sender is not ower!');
+    modifier onlyi_owner {
+        if(msg.sender != i_owner) {revert NotOwner(); }
         _;
+    }
+
+    // Explainer from: https://solidity-by-example.org/fallback/
+    // Ether is sent to contract
+    //      is msg.data empty?
+    //          /   \ 
+    //         yes  no
+    //         /     \
+    //    receive()?  fallback() 
+    //     /   \ 
+    //   yes   no
+    //  /        \
+    //receive()  fallback()
+
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable  {
+        fund();
     }
 }
 
