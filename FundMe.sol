@@ -6,24 +6,30 @@ import './PriceConverter.sol';
 contract FundMe {
     using PriceConverter for uint256;
 
-    uint256 public minimumUsd = 50 * 1e18;
+    uint256 public minimumUsd = 50 * 10 ** 18;
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
+
+    address public owner;
+
+    constructor () {
+        owner = msg.sender;
+    }
 
     function fund() public payable {
         // Want to be able to set a minimum fund amount in USD
         // 1. How to we send ETH to this contract?
-        require(msg.value.getConversionRate() >= minimumUsd, "Did'nt send enough!");
+        require(msg.value.getConversionRate() >= minimumUsd, "Didn't send enough!");
 
         // What is reverting?
         // Undo any actions before, and send remaining gas back
 
         // keep track of funders of the contract
-        funders.push(msg.sender);
         addressToAmountFunded[msg.sender] = msg.value;
+        funders.push(msg.sender);
     }
 
-    function withdraw() public {
+    function withdraw() public onlyOwner {
         for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0; 
@@ -40,6 +46,11 @@ contract FundMe {
         // call
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}('');
         require(callSuccess, 'Call failed');
+    }
+
+    modifier onlyOwner {
+        require(msg.sender == owner, 'Sender is not ower!');
+        _;
     }
 }
 
