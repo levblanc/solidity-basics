@@ -7,7 +7,7 @@
     <img src="./images/blockchain.png" alt="Logo" width="100" height="100">
   </a>
 
-<h2 align="center">Web3, Full Stack Solidity, Smart Contract & Blockchain development with JavaScript</h2>
+  <h2 align="center">Web3, Full Stack Solidity, Smart Contract & Blockchain development with JavaScript</h2>
 
   <p align="center">
     My Web3 full stack Solicity smart contract & blockchain development journey along with 
@@ -18,9 +18,16 @@
 
 <br />
 
-<p align="center">
-  <a href="https://github.com/levblanc/web3-blockchain-solidity-course-js"><img src="https://img.shields.io/badge/mission%2000-blockchain,%20remix%20and%20solidity%20basics%20(Lessons%200,%201,%202,%203,%204)-4D21FC?style=for-the-badge&logo=blockchaindotcom" height="35" /></a>
-</p>
+<div align="center">
+  <p align="center">
+    <a href="https://github.com/levblanc/solidity-basics"><img src="https://img.shields.io/badge/mission%2000-blockchain,%20remix%20and%20solidity%20basics%20(Lessons%200,%201,%202,%203,%204)-4D21FC?style=for-the-badge&logo=blockchaindotcom" height="35" /></a>
+  </p>
+
+<a href="https://github.com/levblanc/solidity-basics">View Code</a> ·
+<a href="https://github.com/levblanc/web3-blockchain-solidity-course-js">Check
+My Full Journey</a>
+
+</div>
 
 <br />
 
@@ -35,15 +42,11 @@ Smart contracts in this repo can be compiled, deploy and interact inside
 git clone https://github.com/levblanc/solidity-basics.git
 ```
 
-#
-
 ## Skills
 
 - [![Solidity]](https://soliditylang.org/)
 - [![Chainlink]](https://chain.link/)
 - [![Remix]](https://remix.ethereum.org/)
-
-#
 
 <!-- ROADMAP -->
 
@@ -78,7 +81,7 @@ git clone https://github.com/levblanc/solidity-basics.git
 
 #
 
-### [Back to main repo](https://github.com/levblanc/web3-blockchain-solidity-course-js)
+### [» Check the main repo of my full journey](https://github.com/levblanc/web3-blockchain-solidity-course-js)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
