@@ -81,7 +81,7 @@ git clone https://github.com/levblanc/solidity-basics.git
 
 #
 
-### [» Check the main repo of my full journey](https://github.com/levblanc/web3-blockchain-solidity-course-js)
+### [» Check the main repo of my full web3 journey](https://github.com/levblanc/web3-blockchain-solidity-course-js)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
